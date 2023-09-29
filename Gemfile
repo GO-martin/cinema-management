@@ -33,6 +33,11 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+# Slim Template
+gem 'slim'
+gem 'slim-rails'
+
+gem 'hotwire-livereload', '~> 1.2', '>= 1.2.3'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -73,3 +78,5 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "tailwindcss-rails", "~> 2.0"
