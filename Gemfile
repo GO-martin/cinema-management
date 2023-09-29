@@ -37,6 +37,9 @@ gem "redis", "~> 4.0"
 gem 'slim'
 gem 'slim-rails'
 
+# Authentication
+gem 'devise'
+
 gem 'hotwire-livereload', '~> 1.2', '>= 1.2.3'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
