@@ -1,10 +1,10 @@
-.container.mt-5
+.container.mt-10
     h1 Pages#home
     p Find me in app/views/pages/home.html.slim
     - if user_signed_in?
         p 
             | User name: 
-            = current_user.email.split('@').first.capitalize 
+            = current_user.email 
             br 
             = link_to "Account Settings", edit_user_registration_path 
             br
