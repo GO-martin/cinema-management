@@ -9,6 +9,6 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   body
-    p.notice = notice 
-    p.alert = alert
+    .flash.fixed.top-20.left-1/2.transform.-translate-x-1/2.flex.flex-col.items-center.gap-4.max-w-full.w-max-content.px-4
+      = render "layouts/flash"
     = yield
