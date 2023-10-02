@@ -46,6 +46,11 @@ gem "pundit"
 # Simple Form
 gem 'simple_form'
 
+# RuboCop: Ruby code style checking and code formatting tool
+gem 'rubocop', '~> 1.56', '>= 1.56.3'
+
+gem 'rufo', '~> 0.0.1'
+
 gem 'hotwire-livereload', '~> 1.2', '>= 1.2.3'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
