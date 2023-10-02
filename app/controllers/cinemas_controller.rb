@@ -1,5 +1,7 @@
 class CinemasController < ApplicationController
   before_action :set_cinema, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :authorize_user, except: %i[index show]
 
   # GET /cinemas or /cinemas.json
   def index
@@ -58,6 +60,11 @@ class CinemasController < ApplicationController
   end
 
   private
+    def authorize_user
+      cinema = @cinema || Cinema
+      authorize cinema
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_cinema
       @cinema = Cinema.find(params[:id])
