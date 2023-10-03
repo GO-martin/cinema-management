@@ -4,9 +4,9 @@ class CinemasController < ApplicationController
   before_action :authorize_user, except: %i[index show]
 
   # GET /cinemas or /cinemas.json
-  def index
-    @cinemas = Cinema.all
-  end
+def index
+  @cinemas = Cinema.all
+end
 
   # GET /cinemas/1 or /cinemas/1.json
   def show
@@ -60,18 +60,19 @@ class CinemasController < ApplicationController
   end
 
   private
-    def authorize_user
-      cinema = @cinema || Cinema
-      authorize cinema
-    end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cinema
-      @cinema = Cinema.find(params[:id])
-    end
+  def authorize_user
+    cinema = @cinema || Cinema
+    authorize cinema
+  end
 
-    # Only allow a list of trusted parameters through.
-    def cinema_params
-      params.fetch(:cinema, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cinema
+    @cinema = Cinema.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def cinema_params
+    params.fetch(:cinema, {})
+  end
 end

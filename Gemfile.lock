@@ -207,6 +207,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     rubocop (1.56.4)
       base64 (~> 0.1.1)
       json (~> 2.3)
@@ -293,8 +294,9 @@ DEPENDENCIES
   pundit
   rails (~> 7.0.8)
   redis (~> 4.0)
+  rolify
   rubocop (~> 1.56, >= 1.56.3)
-  rufo (~> 0.0.1)
+  rufo
   selenium-webdriver
   simple_form
   slim
@@ -310,4 +312,4 @@ RUBY VERSION
    ruby 3.2.2p53
 
 BUNDLED WITH
-   2.4.19
+   2.4.20

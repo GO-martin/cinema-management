@@ -17,7 +17,7 @@ class CinemasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create cinema" do
     assert_difference("Cinema.count") do
-      post cinemas_url, params: { cinema: {  } }
+      post cinemas_url, params: { cinema: {} }
     end
 
     assert_redirected_to cinema_url(Cinema.last)
@@ -34,7 +34,7 @@ class CinemasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update cinema" do
-    patch cinema_url(@cinema), params: { cinema: {  } }
+    patch cinema_url(@cinema), params: { cinema: {} }
     assert_redirected_to cinema_url(@cinema)
   end
 

@@ -34,24 +34,25 @@ gem "jbuilder"
 gem "redis", "~> 4.0"
 
 # Slim Template
-gem 'slim'
-gem 'slim-rails'
+gem "slim"
+gem "slim-rails"
 
 # Authentication
-gem 'devise'
+gem "devise"
 
 # Authorization
 gem "pundit"
+gem "rolify"
 
 # Simple Form
-gem 'simple_form'
+gem "simple_form"
 
 # RuboCop: Ruby code style checking and code formatting tool
-gem 'rubocop', '~> 1.56', '>= 1.56.3'
+gem "rubocop", "~> 1.56", ">= 1.56.3"
 
-gem 'rufo', '~> 0.0.1'
+gem "rufo"
 
-gem 'hotwire-livereload', '~> 1.2', '>= 1.2.3'
+gem "hotwire-livereload", "~> 1.2", ">= 1.2.3"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -90,7 +91,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
 end
 
 gem "tailwindcss-rails", "~> 2.0"
