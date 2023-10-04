@@ -1,9 +1,8 @@
 doctype html
 html
   head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title CinemaManagement
-    meta content="width=device-width,initial-scale=1" name="viewport" /
+    meta[content="width=device-width,initial-scale=1" name="viewport"] 
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
@@ -11,4 +10,5 @@ html
   body
     .flash.fixed.top-20.left-1/2.transform.-translate-x-1/2.flex.flex-col.items-center.gap-4.max-w-full.w-max-content.px-4
       = render "layouts/flash"
+    = render "layouts/components/navbar"
     = yield

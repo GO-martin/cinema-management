@@ -1,2 +1,2 @@
-class Admin::MoviesController < ApplicationController
+class Admin::MoviesController < Admin::BaseController
 end

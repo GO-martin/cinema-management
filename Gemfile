@@ -47,6 +47,9 @@ gem "rolify"
 # Simple Form
 gem "simple_form"
 
+# Inline Svg
+gem 'inline_svg', '~> 1.9'
+
 # RuboCop: Ruby code style checking and code formatting tool
 gem "rubocop", "~> 1.56", ">= 1.56.3"
 

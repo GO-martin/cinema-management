@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home]
+  skip_before_action :authenticate_user!
+  layout "page_layout"
 
   def home
   end
@@ -7,6 +8,6 @@ class PagesController < ApplicationController
   def dashboard
   end
 
-            def home_admin
+  def home_admin
   end
 end

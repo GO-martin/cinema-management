@@ -1,2 +1,2 @@
-class Admin::RoomsController < ApplicationController
+class Admin::RoomsController < Admin::BaseController
 end
