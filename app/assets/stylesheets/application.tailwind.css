@@ -2,6 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* @import "./config/_reset.css"; */
 @import "./components/_flash.css";
 @import "./config/_animation.css";
-@import "./config/_tailwind-dashboard-windster.css";

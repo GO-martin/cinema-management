@@ -2,6 +2,7 @@ module.exports = {
     content: [
         "./app/views/**/*.html.{erb,slim}",
         "./app/views/**/*.slim",
+        "./app/views/**/**/*.slim",
         "./app/helpers/**/*.rb",
         "./app/assets/stylesheets/**/*.{css,scss}",
         "./app/javascript/**/*.js",

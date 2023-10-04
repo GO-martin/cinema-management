@@ -2,17 +2,18 @@ doctype html
 html
   head
     title Admin - CinemaManagement
-    meta[content="width=device-width,initial-scale=1" name="viewport"] 
+    meta[content="width=device-width, initial-scale=1" name="viewport"] 
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
-  body
+  body.bg-gray-50.dark:bg-gray-800.w-screen.h-screen
     .flash.fixed.top-20.left-1/2.transform.-translate-x-1/2.flex.flex-col.items-center.gap-4.max-w-full.w-max-content.px-4
         = render "layouts/flash"
     = render "layouts/components/navbar_admin"
-    .flex.pt-16.overflow-hidden.bg-gray-50.dark:bg-gray-900
+    .flex.pt-16.overflow-hidden.bg-gray-50.dark:bg-gray-900.w-screen.h-screen
         = render "layouts/components/sidebar_admin"
-        #main-content.relative.w-full.h-full.overflow-y-auto.bg-gray-50
-            = yield
+        div[id="main-content" class="relative w-screen h-screen overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900"]
+            main.h-screen
+                = yield
         
