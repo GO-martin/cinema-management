@@ -1,0 +1,138 @@
+= turbo_frame_tag "location-modal"
+.p-4.bg-white.block.sm_flex.items-center.justify-between.border-b.border-gray-200.lg_mt-1.5.dark_bg-gray-800.dark_border-gray-700
+  .w-full.mb-1
+    .mb-4
+      nav.flex.mb-5 aria-label="Breadcrumb"
+        ol.inline-flex.items-center.space-x-1.text-sm.font-medium.md_space-x-2
+          li.inline-flex.items-center
+            a.inline-flex.items-center.text-gray-700.hover_text-blue-600.dark_text-gray-300.dark_hover_text-white href="#"
+              = inline_svg_tag("svg/home-icon.svg", class: "w-5 h-5 mr-2.5") 
+              |  Home 
+          li
+            .flex.items-center
+              = inline_svg_tag("svg/rightArrow-icon.svg", class: "w-6 h-6 text-gray-400")
+              a.ml-1.text-gray-700.hover_text-blue-600.md_ml-2.dark_text-gray-300.dark_hover_text-white[href="#"]
+                | Category 
+          li
+            .flex.items-center
+              = inline_svg_tag("svg/rightArrow-icon.svg", class: "w-6 h-6 text-gray-400")
+              span.ml-1.text-gray-400.md_ml-2.dark_text-gray-500[aria-current="page"]
+                | Locations
+      h1.text-xl.font-semibold.text-gray-900.sm_text-2xl.dark_text-white
+        | All locations
+    div[class="items-center justify-between block sm_flex md_divide-x md_divide-gray-100 dark_divide-gray-700"]
+      div[class="flex items-center mb-4 sm_mb-0"]
+        form[class="sm_pr-3" action="#" method="GET"]
+          label[for="locations-search" class="sr-only"]
+            | Search
+          div[class="relative w-48 mt-1 sm_w-64 xl_w-96"]
+            input[type="text" name="email" id="locations-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm_text-sm rounded-lg focus_ring-blue-500 focus_border-blue-500 block w-full p-2.5 dark_bg-gray-700 dark_border-gray-600 dark_placeholder-gray-400 dark_text-white dark_focus_ring-blue-500 dark_focus_border-blue-500" placeholder="Search for locations"]
+      = link_to "New location", new_admin_location_path, data: { turbo_frame: "location-modal" }, class: "text-white bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark_bg-blue-600 dark_hover_bg-blue-700 focus_outline-none dark_focus_ring-blue-800"
+.flex.flex-col
+  .overflow-x-auto 
+    .inline-block.min-w-full.align-middle 
+      .overflow-hidden.shadow 
+        table[class="min-w-full divide-y divide-gray-200 table-fixed dark_divide-gray-600"]
+          thead[class="bg-gray-100 dark_bg-gray-700"]
+            tr 
+              th[scope="col" class="p-4"]
+                .flex.items-center
+                  input[id="checkbox-all" aria-describedby="checkbox-1" type="checkbox" class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus_ring-3 focus_ring-blue-300 dark_focus_ring-blue-600 dark_ring-offset-gray-800 dark_bg-gray-700 dark_border-gray-600"]
+                  label[for="checkbox-all" class="sr-only"]
+                    | Checkbox
+              th[scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark_text-gray-400"]
+                | Location name 
+              th[scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark_text-gray-400"]
+                | ID
+              th[scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark_text-gray-400"]
+                | Actions
+            tbody[id="locations" class="bg-white divide-y divide-gray-200 dark_bg-gray-800 dark_divide-gray-700"]
+              - @locations.each do |location|
+                = render "location", location: location 
+
+/ Pagination 
+div[class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm_flex sm_justify-between dark_bg-gray-800 dark_border-gray-700"]                
+  .flex.items-center.mb-4.sm_mb-0
+    a.inline-flex.justify-center.p-1.text-gray-500.rounded.cursor-pointer.hover_text-gray-900.hover_bg-gray-100.dark_hover_text-white
+      = inline_svg_tag("svg/leftArrow-icon.svg", class: "w-7 h-7")
+    a.inline-flex.justify-center.p-1.mr-2.text-gray-500.rounded.cursor-pointer.hover_text-gray-900.hover_bg-gray-100.dark_hover_bg-gray-700.dark_hover_text-white
+      = inline_svg_tag("svg/rightArrow-icon.svg", class: "w-7 h-7")
+    span[class="text-sm font-normal text-gray-500 dark_text-gray-400"]
+      | Showing 
+      span[class="font-semibold text-gray-900 dark_text-white"]
+        | 1-20
+      |  of 
+      span[class="font-semibold text-gray-900 dark_text-white"]
+        | 2290
+  .flex.items-center.space-x-3
+    a[class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white cursor-pointer rounded-lg bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 dark_bg-blue-600 dark_hover_bg-blue-700 dark_focus_ring-blue-800"]
+      = inline_svg_tag("svg/leftArrow-icon.svg", class: "w-5 h-5 mr-1 -ml-1")
+      | Previous
+    a[class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white cursor-pointer rounded-lg bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 dark_bg-blue-600 dark_hover_bg-blue-700 dark_focus_ring-blue-800"]
+      | Next 
+      = inline_svg_tag("svg/rightArrow-icon.svg", class: "w-5 h-5 ml-1 -mr-1")
+
+/ Create Location Drawer 
+/ div[id="drawer-create-location-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true"]
+    h5[id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"]
+        | New location
+    button[type="button" data-drawer-dismiss="drawer-create-location-default" aria-controls="drawer-create-location-default" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"]
+        = inline_svg_tag("svg/close-icon.svg", class: "w-5 h-5")
+        span.sr-only 
+            | Close menu
+    = simple_form_for [:admin, Location.new] do |f|    
+        = f.input :name, input_html: { class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" }, \
+                            placeholder: "Type location name", label: "Name", \
+                            label_html: { class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"}
+        div[class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute"]
+            = f.button :submit, "Add location", class: "cursor-pointer text-white w-full justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", "data-drawer-dismiss": "drawer-create-location-default"
+            button[type="button" data-drawer-dismiss="drawer-create-location-default" aria-controls="drawer-create-location-default" class="inline-flex w-full justify-center text-gray-500 items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"]  
+                = inline_svg_tag("svg/close-icon.svg", class: "w-5 h-5 -ml-1 sm:mr-1")  
+                | Cancel
+
+
+/ Delete Location Drawer 
+div[id="drawer-delete-location-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true"]
+  h5[id="drawer-label" class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400"]
+    | Delete item
+  button[type="button" data-drawer-dismiss="drawer-delete-location-default" aria-controls="drawer-delete-location-default" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"]
+    = inline_svg_tag("svg/close-icon.svg", class: "w-5 h-5")
+    span.sr-only 
+      | Close menu
+  = inline_svg_tag("svg/warning-icon.svg", class: "w-10 h-10 mt-8 mb-4 text-red-600")
+  h3[class="mb-6 text-lg text-gray-500 dark:text-gray-400"]
+    | Are you sure you want to delete this location?
+  / a[class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2.5 text-center mr-2 dark:focus:ring-red-900"]
+  /     | Yes, I'm sure
+  .flex.items-center.space-x-2
+    = button_to "Yes, I'm sure", "admin/location", method: :delete, class: "btn-delete-drawer cursor-pointer text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2.5 text-center mr-2 dark:focus:ring-red-900", "data-drawer-dismiss": "drawer-delete-location-default" 
+    
+    a[class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 border border-gray-200 font-medium inline-flex items-center rounded-lg text-sm px-3 py-2.5 text-center dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700" data-drawer-dismiss="drawer-delete-location-default" aria-controls="drawer-delete-location-default"]
+        | No, cancel
+
+
+
+
+/ Delete Location Modal 
+/ div[class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full" id="delete-location-modal"]
+/     div[class="relative w-full h-full max-w-md px-4 md:h-auto"]
+/         / Modal Content 
+/         div[class="relative bg-white rounded-lg shadow dark:bg-gray-800"]
+/             / Modal Header 
+/             div[class="flex justify-end p-2"]
+/                 button[type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white" data-modal-toggle="delete-location-modal"]
+/                     = inline_svg_tag("svg/close-icon.svg", class: "w-5 h-5")
+/             / Modal Body 
+/             div[class="p-6 pt-0 text-center"]
+/                     = inline_svg_tag("svg/warning-icon.svg", class: "w-16 h-16 mx-auto text-red-600")
+/                     h3[class="mt-5 mb-6 text-lg text-gray-500 dark:text-gray-400"]
+/                         | Are you sure you want to delete this location?
+/                     / a[class="text-white bg-red-600 cursor-pointer hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2 dark:focus:ring-red-800"]
+/                     /     | Yes, I'm sure
+                    / = button_to "Yes, I'm sure", admin_location_path(location), method: :delete, class: "text-white bg-red-600 cursor-pointer hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2 dark:focus:ring-red-800"
+/                     / = button_to "Yes, I'm sure", admin_location_path(location), \
+/                     /                             method: :delete, class: "text-white bg-red-600 cursor-pointer hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2 dark:focus:ring-red-800" 
+/                     a[class="text-gray-900 bg-white cursor-pointer hover:bg-gray-100 focus:ring-4 focus:ring-blue-300 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700" data-modal-toggle="delete-location-modal"]
+/                         | No, cancel
+                
+            

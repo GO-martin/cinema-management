@@ -1,23 +1,25 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: "users/registrations",
+    registrations: 'users/registrations'
   }
-  root "pages#home"
-  get "dashboard", to: "pages#dashboard"
-  get "home_admin", to: "pages#home_admin"
+  root 'pages#home'
+  #   get 'dashboard', to: 'pages#dashboard'
+  #   get 'home_admin', to: 'pages#home_admin'
+
   namespace :admin do
     resources :profiles
     resources :cinemas
     resources :users
     resources :news
+    resources :locations
   end
 
   namespace :customer do
     resources :profiles
   end
-
+  resources :news
   # Custom Error Pages
-  match "/404", to: "errors#file_not_found", via: :all
-  match "/422", to: "errors#unprocessable", via: :all
-  match "/500", to: "errors#internal_server_error", via: :all
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 end

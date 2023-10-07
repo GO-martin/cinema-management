@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* @import "./config/_reset.css"; */
+/* Components */
 @import "./components/_flash.css";
+
+/* Config */
 @import "./config/_animation.css";
+@import "./config/_simple_form.css";

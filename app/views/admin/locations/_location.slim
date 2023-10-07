@@ -1,0 +1,18 @@
+tr[class="hover_bg-gray-100 dark_hover_bg-gray-700"]
+  td[class="w-4 p-4"]
+    div[class="flex items-center"]
+      input[id="checkbox-{{ .id }}" aria-describedby="checkbox-1" type="checkbox"
+        class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus_ring-3 focus_ring-blue-300 dark_focus_ring-blue-600 dark_ring-offset-gray-800 dark_bg-gray-700 dark_border-gray-600"]
+      label[for="checkbox-{{ .id }}" class="sr-only"]
+        | Checkbox
+    td[class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark_text-white"]
+      = location.name 
+    td[class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark_text-white"]
+      = location.id 
+    td[class="p-4 space-x-2 whitespace-nowrap"]
+      button[type="button" id="updateLocationButton" class="btn-update inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 dark_bg-blue-600 dark_hover_bg-blue-700 dark_focus_ring-blue-800"]
+        = inline_svg_tag("svg/update-icon.svg", class: "w-4 h-4 mr-2")
+        | Update
+      button[type="button" id="deleteLocationButton" data-drawer-target="drawer-delete-location-default" data-drawer-show="drawer-delete-location-default" aria-controls="drawer-delete-location-default" data-drawer-placement="right" class="btn-delete inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover_bg-red-800 focus_ring-4 focus_ring-red-300 dark_focus_ring-red-900" data-id=location.id]
+        = inline_svg_tag("svg/delete-icon.svg", class: "w-4 h-4 mr-2")
+        | Delete item

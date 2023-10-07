@@ -3,10 +3,12 @@ module.exports = {
         "./app/views/**/*.html.{erb,slim}",
         "./app/views/**/*.slim",
         "./app/views/**/**/*.slim",
+        "./app/components/**/*.slim",
         "./app/helpers/**/*.rb",
         "./app/assets/stylesheets/**/*.{css,scss}",
         "./app/javascript/**/*.js",
         "./node_modules/flowbite/**/*.js",
+        "./config/initializers/simple_form_tailwind.rb",
     ],
     safelist: [
         "w-64",
@@ -93,4 +95,5 @@ module.exports = {
         },
     },
     plugins: [require("flowbite/plugin")],
+    separator: "_",
 };
