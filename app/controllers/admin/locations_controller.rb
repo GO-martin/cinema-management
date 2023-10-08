@@ -3,7 +3,7 @@ class Admin::LocationsController < Admin::BaseController
 
   # GET admin/locations or admin/locations.json
   def index
-    @locations = Location.ordered
+    @locations = Location.search(params[:term])
   end
 
   # GET admin/locations/1 or admin/locations/1.json

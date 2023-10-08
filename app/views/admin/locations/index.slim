@@ -1,4 +1,4 @@
-= turbo_frame_tag "location-modal"
+= turbo_frame_tag "modal"
 .p-4.bg-white.block.sm_flex.items-center.justify-between.border-b.border-gray-200.lg_mt-1.5.dark_bg-gray-800.dark_border-gray-700
   .w-full.mb-1
     .mb-4
@@ -22,12 +22,11 @@
         | All locations
     div[class="items-center justify-between block sm_flex md_divide-x md_divide-gray-100 dark_divide-gray-700"]
       div[class="flex items-center mb-4 sm_mb-0"]
-        form[class="sm_pr-3" action="#" method="GET"]
-          label[for="locations-search" class="sr-only"]
-            | Search
-          div[class="relative w-48 mt-1 sm_w-64 xl_w-96"]
-            input[type="text" name="email" id="locations-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm_text-sm rounded-lg focus_ring-blue-500 focus_border-blue-500 block w-full p-2.5 dark_bg-gray-700 dark_border-gray-600 dark_placeholder-gray-400 dark_text-white dark_focus_ring-blue-500 dark_focus_border-blue-500" placeholder="Search for locations"]
-      = link_to "New location", new_admin_location_path, data: { turbo_frame: "location-modal" }, class: "text-white bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark_bg-blue-600 dark_hover_bg-blue-700 focus_outline-none dark_focus_ring-blue-800"
+        = form_tag(admin_locations_path, method: :get, class: "flex space-x-3") do 
+          = text_field_tag :term, params[:term], placeholder: "Search by name", class: "bg-gray-50 border border-gray-300 text-gray-900 sm_text-sm rounded-lg focus_ring-blue-500 focus_border-blue-500 block w-full p-2.5 dark_bg-gray-700 dark_border-gray-600 dark_placeholder-gray-400 dark_text-white dark_focus_ring-blue-500 dark_focus_border-blue-500"
+          = submit_tag "Search", class: "cursor-pointer text-white bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark_bg-blue-600 dark_hover_bg-blue-700 focus_outline-none dark_focus_ring-blue-800"
+      
+      = link_to "New location", new_admin_location_path, data: { turbo_frame: "modal" }, class: "text-white bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark_bg-blue-600 dark_hover_bg-blue-700 focus_outline-none dark_focus_ring-blue-800"
 .flex.flex-col
   .overflow-x-auto 
     .inline-block.min-w-full.align-middle 
@@ -42,8 +41,9 @@
               th[scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark_text-gray-400"]
                 | Actions
             tbody[id="locations" class="bg-white divide-y divide-gray-200 dark_bg-gray-800 dark_divide-gray-700"]
-              - @locations.each do |location|
-                = render "location", location: location 
+              - if @locations
+                - @locations.each do |location|
+                  = render "location", location: location 
 
 / Pagination 
 div[class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm_flex sm_justify-between dark_bg-gray-800 dark_border-gray-700"]                
