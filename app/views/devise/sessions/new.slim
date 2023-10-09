@@ -1,11 +1,11 @@
-.mx-auto.flex.flex-col.justify-center.items-center.px-6.pt-8.pt:mt-0
-  a.text-2xl.font-semibold.flex.justify-center.items-center.mb-8.lg:mb-10[href=""]
+.mx-auto.flex.flex-col.justify-center.items-center.px-6.pt-8.pt_mt-0
+  a.text-2xl.font-semibold.flex.justify-center.items-center.mb-8.lg_mb-10[href=""]
     = image_tag("logo.png", class: "h-20 mr-4", alt: "Retro Cinema")
     span.self-center.text-2xl.font-bold.whitespace-nowrap
       | Retro Cinema
-  .bg-white.shadow.rounded-lg.md:mt-0.w-full.sm:max-w-screen-sm.xl:p-0.mb-8
-    .p-6.sm:p-8.lg:p-16.space-y-8
-      h2.text-2xl.lg:text-3xl.font-bold.text-gray-900
+  .bg-white.shadow.rounded-lg.md_mt-0.w-full.sm_max-w-screen-sm.xl_p-0.mb-8
+    .p-6.sm_p-8.lg_p-16.space-y-8
+      h2.text-2xl.lg_text-3xl.font-bold.text-gray-900
         |  Sign in to platform 
       = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }, data: {turbo: false}) do |f|
         .field
