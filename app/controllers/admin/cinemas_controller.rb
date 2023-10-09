@@ -24,12 +24,15 @@ class Admin::CinemasController < Admin::BaseController
     respond_to do |format|
       if @cinema.save
         format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend('cinemas', partial: 'admin/cinemas/cinema',
-                                                               locals: { cinema: @cinema })
+          flash.now[:notice] = 'Cinema was successfully created.'
+          render turbo_stream: [
+            turbo_stream.prepend('cinemas', partial: 'admin/cinemas/cinema',
+                                            locals: { cinema: @cinema }),
+            turbo_stream.prepend('flash', partial: 'layouts/components/flash')
+          ]
         end
         format.html { redirect_to admin_cinemas_url, notice: 'Cinema was successfully created.' }
         # format.json { render :show, status: :created, cinema: @cinema }
-        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @cinema.errors, status: :unprocessable_entity }
@@ -42,12 +45,16 @@ class Admin::CinemasController < Admin::BaseController
     respond_to do |format|
       if @cinema.update(cinema_params)
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@cinema, partial: 'admin/cinemas/cinema',
-                                                             locals: { cinema: @cinema })
+          flash[:notice] = 'Cinema was successfully updated.'
+          render turbo_stream: [
+            turbo_stream.replace(@cinema, partial: 'admin/cinemas/cinema',
+                                          locals: { cinema: @cinema }),
+            turbo_stream.prepend('flash',
+                                 partial: 'layouts/components/flash')
+          ]
         end
         format.html { redirect_to admin_cinemas_url, notice: 'Cinema was successfully updated.' }
         # format.json { render :show, status: :ok, cinema: @cinema }
-        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @cinema.errors, status: :unprocessable_entity }
@@ -61,7 +68,11 @@ class Admin::CinemasController < Admin::BaseController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove(@cinema)
+        flash[:notice] = 'Cinema was successfully destroyed.'
+        render turbo_stream: [
+          turbo_stream.remove(@cinema),
+          turbo_stream.prepend('flash', partial: 'layouts/components/flash')
+        ]
       end
       format.html { redirect_to admin_cinemas_url, notice: 'Cinema was successfully destroyed.' }
       # format.json { head :no_content }

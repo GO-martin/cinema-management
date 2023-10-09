@@ -24,12 +24,15 @@ class Admin::LocationsController < Admin::BaseController
     respond_to do |format|
       if @location.save
         format.turbo_stream do
-          render turbo_stream: turbo_stream.prepend('locations', partial: 'admin/locations/location',
-                                                                 locals: { location: @location })
+          flash.now[:notice] = 'Location was successfully created.'
+          render turbo_stream: [
+            turbo_stream.prepend('locations', partial: 'admin/locations/location',
+                                              locals: { location: @location }),
+            turbo_stream.prepend('flash', partial: 'layouts/components/flash')
+          ]
         end
         format.html { redirect_to admin_locations_url, notice: 'Location was successfully created.' }
         # format.json { render :show, status: :created, location: @location }
-        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @location.errors, status: :unprocessable_entity }
@@ -42,12 +45,15 @@ class Admin::LocationsController < Admin::BaseController
     respond_to do |format|
       if @location.update(location_params)
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@location, partial: 'admin/locations/location',
-                                                               locals: { location: @location })
+          flash.now[:notice] = 'Location was successfully updated.'
+          render turbo_stream: [
+            turbo_stream.replace(@location, partial: 'admin/locations/location',
+                                            locals: { location: @location }),
+            turbo_stream.prepend('flash', partial: 'layouts/components/flash')
+          ]
         end
         format.html { redirect_to admin_locations_url, notice: 'Location was successfully updated.' }
         # format.json { render :show, status: :ok, location: @location }
-        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @location.errors, status: :unprocessable_entity }
@@ -61,7 +67,11 @@ class Admin::LocationsController < Admin::BaseController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove(@location)
+        flash.now[:notice] = 'Location was successfully destroyed.'
+        render turbo_stream: [
+          turbo_stream.remove(@location),
+          turbo_stream.prepend('flash', partial: 'layouts/components/flash')
+        ]
       end
       format.html { redirect_to admin_locations_url, notice: 'Location was successfully destroyed.' }
       # format.json { head :no_content }

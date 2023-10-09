@@ -9,7 +9,7 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
   body.bg-gray-50.dark_bg-gray-800
-    .flash.fixed.top-20.left-1/2.transform.-translate-x-1/2.flex.flex-col.items-center.gap-4.max-w-full.w-max-content.px-4
+    #flash.flash.fixed.top-20.transform.flex.flex-col.items-center.gap-4.max-w-full.w-max-content.px-4.z-50 class="left-1/2 -translate-x-1/2"
       = render "layouts/components/flash"
     = render "layouts/components/navbar_admin"
     .flex.pt-16.overflow-hidden.bg-gray-50.dark_bg-gray-900
