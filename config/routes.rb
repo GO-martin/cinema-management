@@ -8,10 +8,18 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :profiles
-    resources :cinemas
+    resources :cinemas do
+      member do
+        get 'destroy_modal'
+      end
+    end
     resources :users
     resources :news
-    resources :locations
+    resources :locations do
+      member do
+        get 'destroy_modal'
+      end
+    end
   end
 
   namespace :customer do

@@ -1,5 +1,5 @@
 class Admin::LocationsController < Admin::BaseController
-  before_action :set_location, only: %i[show edit update destroy]
+  before_action :set_location, only: %i[show edit update destroy destroy_modal]
 
   # GET admin/locations or admin/locations.json
   def index
@@ -68,6 +68,8 @@ class Admin::LocationsController < Admin::BaseController
     end
   end
 
+  def destroy_modal; end
+  
   private
 
   def set_location
