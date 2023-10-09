@@ -3,7 +3,7 @@ class Admin::CinemasController < Admin::BaseController
 
   # GET admin/cinemas or admin/cinemas.json
   def index
-    @cinemas = Cinema.search(params[:term])
+    @pagy, @cinemas = pagy(Cinema.search(params[:term]), items: 20)
   end
 
   # GET admin/cinemas/1 or admin/cinemas/1.json
@@ -77,6 +77,6 @@ class Admin::CinemasController < Admin::BaseController
   end
 
   def cinema_params
-    params.require(:cinema).permit(:name, :description)
+    params.require(:cinema).permit(:name, :description, :location_id)
   end
 end

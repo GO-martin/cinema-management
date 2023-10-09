@@ -4,6 +4,7 @@
 
 /* Components */
 @import "./components/_flash.css";
+@import "./components/_pagy.css";
 
 /* Config */
 @import "./config/_animation.css";

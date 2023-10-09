@@ -31,39 +31,26 @@
   .overflow-x-auto 
     .inline-block.min-w-full.align-middle 
       .overflow-hidden.shadow 
-        table[class="min-w-full divide-y divide-gray-200 table-fixed dark_divide-gray-600"]
-          thead[class="bg-gray-100 dark_bg-gray-700"]
+        table.min-w-full.divide-y.divide-gray-200.table-fixed.dark_divide-gray-600
+          thead.bg-gray-100.dark_bg-gray-700
             tr 
-              th[scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark_text-gray-400"]
+              th.p-4.text-xs.font-medium.text-left.text-gray-500.uppercase.dark_text-gray-400 scope="col" 
                 | Cinema name 
-              th[scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark_text-gray-400"]
+              th.p-4.text-xs.font-medium.text-left.text-gray-500.uppercase.dark_text-gray-400 scope="col" 
                 | ID
-              th[scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark_text-gray-400"]
+              th.p-4.text-xs.font-medium.text-left.text-gray-500.uppercase.dark_text-gray-400 scope="col" 
+                | Location
+              th.p-4.text-xs.font-medium.text-left.text-gray-500.uppercase.dark_text-gray-400 scope="col" 
                 | Actions
-            tbody[id="cinemas" class="bg-white divide-y divide-gray-200 dark_bg-gray-800 dark_divide-gray-700"]
-              - if @cinemas
-                - @cinemas.each do |cinema|
-                  = render "cinema", cinema: cinema 
+          tbody#cinemas.bg-white.divide-y.divide-gray-200.dark_bg-gray-800.dark_divide-gray-700
+            - if @cinemas
+              - @cinemas.each do |cinema|
+                = render "cinema", cinema: cinema 
 
 / Pagination 
 div[class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm_flex sm_justify-between dark_bg-gray-800 dark_border-gray-700"]                
-  .flex.items-center.mb-4.sm_mb-0
-    a.inline-flex.justify-center.p-1.text-gray-500.rounded.cursor-pointer.hover_text-gray-900.hover_bg-gray-100.dark_hover_text-white
-      = inline_svg_tag("svg/leftArrow-icon.svg", class: "w-7 h-7")
-    a.inline-flex.justify-center.p-1.mr-2.text-gray-500.rounded.cursor-pointer.hover_text-gray-900.hover_bg-gray-100.dark_hover_bg-gray-700.dark_hover_text-white
-      = inline_svg_tag("svg/rightArrow-icon.svg", class: "w-7 h-7")
-    span[class="text-sm font-normal text-gray-500 dark_text-gray-400"]
-      | Showing 
-      span[class="font-semibold text-gray-900 dark_text-white"]
-        | 1-20
-      |  of 
-      span[class="font-semibold text-gray-900 dark_text-white"]
-        | 2290
-  .flex.items-center.space-x-3
-    a[class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white cursor-pointer rounded-lg bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 dark_bg-blue-600 dark_hover_bg-blue-700 dark_focus_ring-blue-800"]
-      = inline_svg_tag("svg/leftArrow-icon.svg", class: "w-5 h-5 mr-1 -ml-1")
-      | Previous
-    a[class="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white cursor-pointer rounded-lg bg-blue-700 hover_bg-blue-800 focus_ring-4 focus_ring-blue-300 dark_bg-blue-600 dark_hover_bg-blue-700 dark_focus_ring-blue-800"]
-      | Next 
-      = inline_svg_tag("svg/rightArrow-icon.svg", class: "w-5 h-5 ml-1 -mr-1")
+  .flex.items-center.mb-4.sm_mb-0.space-x-3
+    == pagy_nav(@pagy)
+    span[class="font-semibold text-gray-900 dark_text-white"]
+      == pagy_info(@pagy)
 

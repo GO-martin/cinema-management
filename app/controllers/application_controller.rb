@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+
+  include Pagy::Backend
   # Cross-Site Request Forgery (CSRF)
   protect_from_forgery with: :exception
 

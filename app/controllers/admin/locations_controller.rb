@@ -3,7 +3,7 @@ class Admin::LocationsController < Admin::BaseController
 
   # GET admin/locations or admin/locations.json
   def index
-    @locations = Location.search(params[:term])
+    @pagy, @locations = pagy(Location.search(params[:term]))
   end
 
   # GET admin/locations/1 or admin/locations/1.json
@@ -69,7 +69,7 @@ class Admin::LocationsController < Admin::BaseController
   end
 
   def destroy_modal; end
-  
+
   private
 
   def set_location

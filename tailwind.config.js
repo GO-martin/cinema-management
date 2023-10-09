@@ -5,6 +5,7 @@ module.exports = {
         "./app/views/**/**/*.slim",
         "./app/components/**/*.slim",
         "./app/helpers/**/*.rb",
+        "./app/assets/stylesheets/*.{css,scss}",
         "./app/assets/stylesheets/**/*.{css,scss}",
         "./app/javascript/**/*.js",
         "./node_modules/flowbite/**/*.js",

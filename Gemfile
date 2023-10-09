@@ -51,6 +51,19 @@ gem 'simple_form-tailwind'
 # Inline Svg
 gem 'inline_svg', '~> 1.9'
 
+# Search
+gem 'ransack'
+
+# Populate our seed data
+gem "faker" 
+
+# Pagination
+gem "pagy"
+
+# Debug
+gem "byebug"
+
+gem "pry-byebug"
 
 # RuboCop: Ruby code style checking and code formatting tool
 gem "rubocop", "~> 1.56", ">= 1.56.3"
