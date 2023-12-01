@@ -1,6 +1,33 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
+  root 'pages#home'
+  #   get 'dashboard', to: 'pages#dashboard'
+  #   get 'home_admin', to: 'pages#home_admin'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :admin do
+    resources :profiles
+    resources :cinemas do
+      member do
+        get 'destroy_modal'
+      end
+    end
+    resources :users
+    resources :news
+    resources :locations do
+      member do
+        get 'destroy_modal'
+      end
+    end
+  end
+
+  namespace :customer do
+    resources :profiles
+  end
+  resources :news
+  # Custom Error Pages
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 end

@@ -33,6 +33,44 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
+# Slim Template
+gem "slim"
+gem "slim-rails"
+
+# Authentication
+gem "devise"
+
+# Authorization
+gem "pundit"
+gem "rolify"
+
+# Simple Form
+gem "simple_form"
+gem 'simple_form-tailwind'
+
+# Inline Svg
+gem 'inline_svg', '~> 1.9'
+
+# Search
+gem 'ransack'
+
+# Populate our seed data
+gem "faker" 
+
+# Pagination
+gem "pagy"
+
+# Debug
+gem "byebug"
+
+gem "pry-byebug"
+
+# RuboCop: Ruby code style checking and code formatting tool
+gem "rubocop", "~> 1.56", ">= 1.56.3"
+
+gem "rufo"
+
+gem "hotwire-livereload", "~> 1.2", ">= 1.2.3"
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -71,5 +109,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
 end
+
+gem "tailwindcss-rails", "~> 2.0"
+
+gem "view_component", "~> 3.6"
